@@ -1,5 +1,5 @@
 Flask==3.0.3
 huggingface_hub==0.25.2
-torch==2.4.1+cpu
+torch==2.4.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
 transformers==4.45.2
 
