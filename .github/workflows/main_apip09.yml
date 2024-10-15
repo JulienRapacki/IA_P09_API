@@ -35,7 +35,7 @@ jobs:
         env:
           API_P9_HUGG: ${{ secrets.API_P9_HUGG }}
         run : echo "log hugging face ok"
-        
+      
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -69,9 +69,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0AF5011044AB4299B4BED7ABC3A5B844 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_43A5E1CA3B3F4D928CFC6C87C886B0B8 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E05D18988FAF456582B684313D103779 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A5F9A66C3C384CAFB8D99528C847C1A4 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F92E65CCF5FF4991A0AECEDC5F8DBB1D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_503D9AE584574E9AB346436214074B13 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
