@@ -36,6 +36,11 @@ jobs:
           API_P9_HUGG: ${{ secrets.API_P9_HUGG }}
         run : echo "log hugging face ok"
       
+      - name: Install system dependencies for CUDA
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1 libglib2.0-0
+
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -79,4 +84,6 @@ jobs:
         with:
           app-name: 'APIp09'
           slot-name: 'Production'
-          
+          package: release.zip
+          enable-ondemand: true
+         
