@@ -33,7 +33,7 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name : Hugging face model
         env:
-          API_P9_HUGG: ${{ secret.API_P9_HUGG }}
+          API_P9_HUGG: ${{ secrets.API_P9_HUGG }}
         run : echo "log hugging face ok"
         
       - name: Zip artifact for deployment
