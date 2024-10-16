@@ -20,7 +20,8 @@ model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
 
 
 # Définir le périphérique (GPU si disponible, sinon CPU)
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 model.to(device)
 model = model.half().to(device)
 # Créer l'application Flask
