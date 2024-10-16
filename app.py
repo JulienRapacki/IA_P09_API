@@ -21,10 +21,13 @@ model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
 
 # Définir le périphérique (GPU si disponible, sinon CPU)
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-device = torch.device("cpu")
+# device = torch.device("cpu")
+device = torch.float32
 model.to(device)
 model = model.half().to(device)
 # Créer l'application Flask
+# Désactive les dropout out test 16-10-20:34
+model.eval()
 
 app = Flask(__name__)
 @app.route("/")
