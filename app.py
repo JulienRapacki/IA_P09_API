@@ -10,7 +10,7 @@ from huggingface_hub import login
 # Deep learning
 
 
-login = os.environ['API_P9_HUGG']
+login(os.environ['API_P9_HUGG'])
 
 MODEL_NAME = 'Rapacki/T5-small-tweet-p9'
 
