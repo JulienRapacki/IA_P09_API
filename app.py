@@ -64,8 +64,8 @@ def predict_sentiment():
     # Retourner la réponse JSON
     return jsonify({'sentiment': prediction})
 
-# Démarrer le serveur Flask
-if __name__ == "__main__":
+# # Démarrer le serveur Flask
+# if __name__ == "__main__":
 
-    # Launch the Flask app
-    app.run(debug=True)
+#     # Launch the Flask app
+#     app.run(debug=True)
