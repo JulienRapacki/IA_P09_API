@@ -21,8 +21,8 @@ model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME)
 
 # Définir le périphérique (GPU si disponible, sinon CPU)
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# device = torch.device("cpu")
-device = torch.long
+device = torch.device("cpu")
+
 model.to(device)
 # model = model.half().to(device)
 # Créer l'application Flask
@@ -54,8 +54,8 @@ def predict_sentiment():
     )
     
     # Envoyer les tenseurs à l'appareil
-    input_ids = inputs['input_ids'].to(device)
-    attention_mask = inputs['attention_mask'].to(device)
+    input_ids = inputs['input_ids'].to(torch.long)
+    attention_mask = inputs['attention_mask'].to(torch.long)
     
     # Générer la prédiction
     with torch.no_grad():
