@@ -22,15 +22,6 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Cache pip dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            
-
       - name: Create and start virtual environment
         run: |
           python -m venv venv
@@ -40,18 +31,6 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-
-
-
-      - name : Hugging face model
-        env:
-          API_P9_HUGG: ${{ secrets.API_P9_HUGG }}
-        run : echo "log hugging face ok"
-      
-      - name: Install system dependencies for CUDA
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libgl1 libglib2.0-0
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
@@ -72,8 +51,6 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
-    env:
-      API_P9_HUGG: ${{ secrets.API_P9_HUGG }}
 
     steps:
       - name: Download artifact from build job
@@ -88,9 +65,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A5F9A66C3C384CAFB8D99528C847C1A4 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F92E65CCF5FF4991A0AECEDC5F8DBB1D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_503D9AE584574E9AB346436214074B13 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6D7AD51AAC0F401E9A72D8BE9769D74A }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_34EFEBF41BD34A648BEAC3D3066DCEDF }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CBF4C3FD51374A86AA4B7C6AA6418711 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -98,6 +75,4 @@ jobs:
         with:
           app-name: 'APIp09'
           slot-name: 'Production'
-          package: release.zip
-          enable-ondemand: true
-         
+          
