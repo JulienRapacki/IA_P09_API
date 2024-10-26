@@ -99,10 +99,16 @@ def predict_sentiment():
     else:
         sentiment = "negative"
         probability = 0.1
+    return jsonify({
+        'sentiment': sentiment
+    })
     
-    
-
+@app.route('/interpret', methods=['POST'])
+def interpret():
     #Interprétation avec SHAP
+    data = request.json
+    input_text = data.get('text', '')
+    full_input = f"sentiment: {input_text}"
     shap_values = explainer([full_input])
     word_contributions = []
     for token, value in zip(shap_values.data[0], shap_values.values[0]):
@@ -113,13 +119,12 @@ def predict_sentiment():
 
     # Retourner la prédiction et l'interprétation
     return jsonify({
-        'sentiment': sentiment,
         'interpretation': word_contributions
     })
-    
+        
 
 # Démarrer le serveur Flask
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     # Launch the Flask app
-#     app.run(debug=True)
+    # Launch the Flask app
+    app.run(debug=True)
