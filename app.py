@@ -124,7 +124,7 @@ def interpret():
         
 
 # Démarrer le serveur Flask
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    # Launch the Flask app
-    app.run(debug=True)
+#     # Launch the Flask app
+#     app.run(debug=True)
